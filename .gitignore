@@ -24,8 +24,7 @@ pnpm-debug.log*
 public/assets/video/
 
 # design source files
-design/bardanca/
-design/images/
+design/
 
 # IA config
 .config/internetarchive/
