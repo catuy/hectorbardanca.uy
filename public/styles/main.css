@@ -317,6 +317,12 @@ body {
   text-transform: uppercase;
 }
 
+.post-bio__photo {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+}
+
 .post-bio__body {
   font-size: 14px;
   line-height: 1.7;

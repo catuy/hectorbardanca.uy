@@ -44,6 +44,9 @@ const sorted = allPosts.sort((a, b) => a.data.order - b.data.order);
                 <div class="divider"></div>
                 <article class="post post-bio" data-category="bio">
                   <h2 class="post-bio__title">{data.title}</h2>
+                  {data.images && data.images.length > 0 && (
+                    <img class="post-bio__photo" src={data.images[0]} alt="Héctor Bardanca" loading="lazy" />
+                  )}
                   <div class="post-bio__body"><Content /></div>
                 </article>
               </Fragment>
@@ -62,7 +65,7 @@ const sorted = allPosts.sort((a, b) => a.data.order - b.data.order);
         <button class="sidebar__filter active" data-filter="videos">Videos</button>
         <button class="sidebar__filter active" data-filter="musica">Música</button>
         <button class="sidebar__filter active" data-filter="textos">Textos</button>
-        <button class="sidebar__filter active" data-filter="bio">Bio</button>
+        <button class="sidebar__filter active" data-filter="bio">Curry</button>
       </nav>
       <div class="sidebar__spacer"></div>
       <div class="sidebar__sound">
