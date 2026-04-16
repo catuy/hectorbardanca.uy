@@ -44,10 +44,11 @@ const sorted = allPosts.sort((a, b) => a.data.order - b.data.order);
                 <div class="divider"></div>
                 <article class="post post-bio" data-category="bio">
                   <h2 class="post-bio__title">{data.title}</h2>
+                  <div class="post-bio__body"><Content /></div>
                   {data.images && data.images.length > 0 && (
                     <img class="post-bio__photo" src={data.images[0]} alt="Héctor Bardanca" loading="lazy" />
                   )}
-                  <div class="post-bio__body"><Content /></div>
+                  {data.credits && <p class="post-bio__credits">{data.credits}</p>}
                 </article>
               </Fragment>
             );

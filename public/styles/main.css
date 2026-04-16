@@ -323,6 +323,12 @@ body {
   display: block;
 }
 
+.post-bio__credits {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
 .post-bio__body {
   font-size: 14px;
   line-height: 1.7;
