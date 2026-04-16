@@ -1,8 +1,9 @@
 ---
 interface Props {
   images: string[];
+  credits?: string;
 }
-const { images } = Astro.props;
+const { images, credits } = Astro.props;
 ---
 <article class="post" data-category="fotos">
   {images.length === 1 ? (
@@ -14,4 +15,5 @@ const { images } = Astro.props;
       ))}
     </div>
   )}
+  {credits && <p class="post-foto__credits">{credits}</p>}
 </article>

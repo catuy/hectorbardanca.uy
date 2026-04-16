@@ -297,6 +297,12 @@ body {
   gap: 16px;
 }
 
+.post-foto__credits {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
 /* Bio */
 .post-bio {
   display: flex;

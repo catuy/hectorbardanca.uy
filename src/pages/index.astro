@@ -34,7 +34,7 @@ const sorted = allPosts.sort((a, b) => a.data.order - b.data.order);
           }
 
           if (data.type === 'foto' && data.images) {
-            return <FotoPost images={data.images} />;
+            return <FotoPost images={data.images} credits={data.credits} />;
           }
 
           if (data.type === 'bio') {
