@@ -1,0 +1,11 @@
+---
+interface Props {
+  body: string;
+}
+const { body } = Astro.props;
+---
+<div class="divider"></div>
+<article class="post post-bio" data-category="bio">
+  <h2 class="post-bio__title">Bio</h2>
+  <div class="post-bio__body" set:html={body} />
+</article>

@@ -1,0 +1,32 @@
+---
+interface Track {
+  title: string;
+  file: string;
+}
+interface Props {
+  title: string;
+  artist?: string;
+  year?: number;
+  cover?: string;
+  tracks?: Track[];
+}
+const { title, artist, year, cover, tracks = [] } = Astro.props;
+---
+<article class="post post-disco" data-category="musica">
+  {cover && <img class="post-disco__cover" src={cover} alt={title} loading="lazy" />}
+  <div class="post-disco__info">
+    <h2 class="post-disco__title">{title}</h2>
+    {artist && <span class="post-disco__artist">{artist}</span>}
+    {year && <span class="post-disco__year">{year}</span>}
+    {tracks.length > 0 && (
+      <ul class="post-disco__tracks">
+        {tracks.map((track) => (
+          <li class="post-disco__track" data-src={track.file}>
+            <button class="post-disco__track-btn" aria-label={`Reproducir ${track.title}`}>&#9654;</button>
+            <span class="post-disco__track-name">{track.title}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</article>

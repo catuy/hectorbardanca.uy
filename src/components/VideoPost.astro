@@ -1,0 +1,13 @@
+---
+interface Props {
+  title: string;
+  embed: string;
+  description?: string;
+}
+const { title, embed, description } = Astro.props;
+---
+<article class="post" data-category="videos">
+  <iframe class="post-video__embed" src={embed} allowfullscreen loading="lazy"></iframe>
+  <h2 class="post-video__title">{title}</h2>
+  {description && <p class="post-video__caption">{description}</p>}
+</article>

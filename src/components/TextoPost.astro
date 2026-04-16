@@ -1,0 +1,11 @@
+---
+interface Props {
+  title: string;
+  body: string;
+}
+const { title, body } = Astro.props;
+---
+<article class="post" data-category="textos">
+  <h2 class="post-texto__title">{title}</h2>
+  <div class="post-texto__body" set:html={body} />
+</article>

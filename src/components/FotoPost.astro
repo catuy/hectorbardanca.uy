@@ -1,0 +1,17 @@
+---
+interface Props {
+  images: string[];
+}
+const { images } = Astro.props;
+---
+<article class="post" data-category="fotos">
+  {images.length === 1 ? (
+    <img class="post-foto__image" src={images[0]} alt="" loading="lazy" />
+  ) : (
+    <div class="post-foto__gallery">
+      {images.map((src) => (
+        <img class="post-foto__image" src={src} alt="" loading="lazy" />
+      ))}
+    </div>
+  )}
+</article>

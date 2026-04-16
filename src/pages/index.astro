@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import VideoPost from '../components/VideoPost.astro';
+import DiscoPost from '../components/DiscoPost.astro';
+import FotoPost from '../components/FotoPost.astro';
+import { getCollection, render } from 'astro:content';
+
+const allPosts = await getCollection('posts');
+const sorted = allPosts.sort((a, b) => a.data.order - b.data.order);
+---
+<Base>
+  <div class="site">
+    <main class="main">
+      <div class="feed">
+        {sorted.map(async (post) => {
+          const { data } = post;
+
+          if (data.type === 'video' && data.embed) {
+            return <VideoPost title={data.title} embed={data.embed} description={data.description} />;
+          }
+
+          if (data.type === 'disco') {
+            return <DiscoPost title={data.title} artist={data.artist} year={data.year} cover={data.cover} tracks={data.tracks} />;
+          }
+
+          if (data.type === 'texto') {
+            const { Content } = await render(post);
+            return (
+              <article class="post" data-category="textos">
+                <h2 class="post-texto__title">{data.title}</h2>
+                <div class="post-texto__body"><Content /></div>
+              </article>
+            );
+          }
+
+          if (data.type === 'foto' && data.images) {
+            return <FotoPost images={data.images} />;
+          }
+
+          if (data.type === 'bio') {
+            const { Content } = await render(post);
+            return (
+              <Fragment>
+                <div class="divider"></div>
+                <article class="post post-bio" data-category="bio">
+                  <h2 class="post-bio__title">Bio</h2>
+                  <div class="post-bio__body"><Content /></div>
+                </article>
+              </Fragment>
+            );
+          }
+        })}
+      </div>
+      <footer class="footer">
+        <span>&copy; 2026 Héctor Bardanca</span>
+        <a href="mailto:contacto@hectorbardanca.uy">contacto@hectorbardanca.uy</a>
+      </footer>
+    </main>
+    <aside class="sidebar">
+      <a href="/" class="sidebar__brand">Héctor Bardanca</a>
+      <nav class="sidebar__nav">
+        <button class="sidebar__filter active" data-filter="videos">Videos</button>
+        <button class="sidebar__filter active" data-filter="musica">Música</button>
+        <button class="sidebar__filter active" data-filter="textos">Textos</button>
+        <button class="sidebar__filter active" data-filter="bio">Bio</button>
+      </nav>
+      <div class="sidebar__spacer"></div>
+      <div class="sidebar__sound">
+        <span class="sidebar__sound-label">Sonido</span>
+        <button class="sidebar__sound-toggle" id="sound-toggle">OFF</button>
+      </div>
+    </aside>
+  </div>
+</Base>

@@ -1,0 +1,83 @@
+backend:
+  name: github
+  repo: catuy/hectorbardanca.uy
+  branch: master
+
+media_folder: public/assets/img
+public_folder: /assets/img
+
+collections:
+  - name: posts
+    label: Posts
+    folder: src/content/posts
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Tipo
+        name: type
+        widget: select
+        options:
+          - { label: "Video", value: "video" }
+          - { label: "Disco", value: "disco" }
+          - { label: "Texto", value: "texto" }
+          - { label: "Foto", value: "foto" }
+          - { label: "Bio", value: "bio" }
+      - label: Título
+        name: title
+        widget: string
+      - label: Orden
+        name: order
+        widget: number
+        hint: "Número que determina la posición en el feed (menor = más arriba)"
+      - label: Año
+        name: year
+        widget: number
+        required: false
+      - label: Descripción
+        name: description
+        widget: text
+        required: false
+      - label: Créditos
+        name: credits
+        widget: text
+        required: false
+      - label: Imágenes
+        name: images
+        widget: list
+        required: false
+        field:
+          label: Imagen
+          name: image
+          widget: image
+      # Video fields
+      - label: URL embed (video)
+        name: embed
+        widget: string
+        required: false
+        hint: "URL de embed de Archive.org o YouTube"
+      # Disco fields
+      - label: Artista
+        name: artist
+        widget: string
+        required: false
+      - label: Cover
+        name: cover
+        widget: image
+        required: false
+      - label: Tracks
+        name: tracks
+        widget: list
+        required: false
+        fields:
+          - label: Título
+            name: title
+            widget: string
+          - label: Archivo
+            name: file
+            widget: string
+            hint: "Ruta al archivo MP3, ej: /assets/audio/album/track.mp3"
+      # Body for texto/bio
+      - label: Contenido
+        name: body
+        widget: markdown
+        required: false
