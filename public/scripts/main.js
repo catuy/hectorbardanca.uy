@@ -9,7 +9,6 @@ document.addEventListener('click', (e) => {
   const src = trackEl.dataset.src;
   if (!src) return;
 
-  // If clicking same track, toggle play/pause
   if (currentTrack === trackEl) {
     if (audioEl.paused) {
       audioEl.play();
@@ -23,13 +22,11 @@ document.addEventListener('click', (e) => {
     return;
   }
 
-  // Stop previous
   if (currentTrack) {
     currentTrack.classList.remove('active');
     currentTrack.querySelector('.post-disco__track-btn').textContent = '▶';
   }
 
-  // Play new track
   audioEl.src = src;
   audioEl.play();
   trackEl.classList.add('active');
@@ -39,8 +36,6 @@ document.addEventListener('click', (e) => {
 
 audioEl.addEventListener('ended', () => {
   if (!currentTrack) return;
-
-  // Auto-play next track in same album
   const next = currentTrack.nextElementSibling;
   if (next && next.classList.contains('post-disco__track')) {
     next.click();
@@ -52,22 +47,14 @@ audioEl.addEventListener('ended', () => {
 });
 
 // Filters
-const filters = document.querySelectorAll('.sidebar__filter');
+const filters = document.querySelectorAll('.nav__filter');
 const posts = document.querySelectorAll('.post');
-let activeFilter = null; // null = all active
-
-const categoryMap = {
-  videos: 'videos',
-  musica: 'musica',
-  textos: 'textos',
-  bio: 'bio',
-};
+let activeFilter = null;
 
 function updateVisibility() {
   posts.forEach((post) => {
     const cat = post.dataset.category;
     if (!cat) {
-      // Posts without category (like fotos) show when all filters active or none selected
       post.classList.toggle('hidden', activeFilter !== null && activeFilter !== 'fotos');
       return;
     }
@@ -78,21 +65,14 @@ function updateVisibility() {
     }
   });
 
-  // Show/hide dividers
-  document.querySelectorAll('.divider').forEach((div) => {
-    if (activeFilter === null || activeFilter === 'bio') {
-      div.classList.remove('hidden');
-    } else {
-      div.classList.add('hidden');
-    }
-  });
-
-  // Update filter button states
   filters.forEach((btn) => {
-    if (activeFilter === null) {
+    const f = btn.dataset.filter;
+    if (f === 'todos') {
+      btn.classList.toggle('active', activeFilter === null);
+    } else if (activeFilter === null) {
       btn.classList.add('active');
     } else {
-      btn.classList.toggle('active', btn.dataset.filter === activeFilter);
+      btn.classList.toggle('active', f === activeFilter);
     }
   });
 }
@@ -100,8 +80,7 @@ function updateVisibility() {
 filters.forEach((btn) => {
   btn.addEventListener('click', () => {
     const filter = btn.dataset.filter;
-    if (activeFilter === filter) {
-      // Clicking active filter → show all
+    if (filter === 'todos' || activeFilter === filter) {
       activeFilter = null;
     } else {
       activeFilter = filter;
@@ -122,10 +101,64 @@ if (soundToggle) {
     soundOn = !soundOn;
     if (soundOn) {
       ambientAudio.play();
-      soundToggle.textContent = 'ON';
+      soundToggle.textContent = 'Sound ON';
     } else {
       ambientAudio.pause();
-      soundToggle.textContent = 'OFF';
+      soundToggle.textContent = 'Sound OFF';
     }
   });
 }
+
+// Nav color sync and random positioning
+const nav = document.querySelector('.nav');
+const navItems = nav.querySelectorAll(':scope > *');
+const sections = document.querySelectorAll('.post-section');
+let currentSection = null;
+
+function placeItems() {
+  const items = Array.from(navItems);
+  const totalItemsWidth = items.reduce((s, el) => s + el.offsetWidth, 0);
+  const freeSpace = Math.max(0, window.innerWidth - totalItemsWidth);
+
+  // items.length + 1 slots: before first, between each, after last
+  const slots = items.length + 1;
+  const rands = Array.from({ length: slots }, () => Math.random());
+  const randSum = rands.reduce((s, r) => s + r, 0);
+
+  items.forEach((el, i) => {
+    el.style.marginLeft = Math.round((rands[i] / randSum) * freeSpace) + 'px';
+  });
+}
+
+function updateNav() {
+  const navY = 20;
+
+  let next = sections[0];
+  for (const section of sections) {
+    if (section.style.display === 'none') continue;
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= navY && rect.bottom > navY) {
+      next = section;
+      break;
+    }
+  }
+
+  if (next && next !== currentSection) {
+    currentSection = next;
+    const bg = next.style.backgroundColor || '#ffffff';
+    const color = next.style.color || '#000000';
+    const same = next.classList.contains('post-section--nav-same');
+
+    navItems.forEach((item) => {
+      item.style.color = same ? color : bg;
+      item.style.backgroundColor = same ? bg : color;
+    });
+
+    placeItems();
+  }
+}
+
+window.addEventListener('scroll', updateNav, { passive: true });
+window.addEventListener('resize', placeItems);
+placeItems();
+updateNav();

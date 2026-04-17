@@ -1,6 +1,7 @@
 ---
 type: foto
-title: ""
+title: "Bardo Kan"
+showTitle: false
 order: 18
 images:
   - /assets/img/jpg--bardokan.webp

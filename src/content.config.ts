@@ -18,6 +18,10 @@ const posts = defineCollection({
     description: z.string().optional(),
     credits: z.string().optional(),
     images: z.array(z.string()).optional(),
+    showTitle: z.boolean().optional(),
+    fullscreen: z.boolean().optional(),
+    bgColor: z.string().optional(),
+    textColor: z.string().optional(),
   }),
 });
 

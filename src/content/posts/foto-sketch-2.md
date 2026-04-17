@@ -1,6 +1,7 @@
 ---
 type: foto
-title: ""
+title: "Sketches"
+showTitle: false
 order: 12
 images:
   - /assets/img/jpg--squejo4.webp

@@ -1,3 +1,5 @@
+local_backend: true
+
 backend:
   name: github
   repo: catuy/hectorbardanca.uy
@@ -12,6 +14,8 @@ collections:
     folder: src/content/posts
     create: true
     slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}} ({{type}})"
     fields:
       - label: Tipo
         name: type
@@ -76,6 +80,29 @@ collections:
             name: file
             widget: string
             hint: "Ruta al archivo MP3, ej: /assets/audio/album/track.mp3"
+      # Display options
+      - label: Mostrar título en el sitio
+        name: showTitle
+        widget: boolean
+        required: false
+        default: true
+        hint: "Si está desactivado, el título solo se ve en el admin"
+      - label: Pantalla completa
+        name: fullscreen
+        widget: boolean
+        required: false
+        default: false
+        hint: "Imágenes y videos ocupan todo el ancho del navegador"
+      - label: Color de fondo
+        name: bgColor
+        widget: color
+        required: false
+        hint: "Color de fondo de la sección (ej: #000000)"
+      - label: Color de texto
+        name: textColor
+        widget: color
+        required: false
+        hint: "Color del texto de la sección (ej: #ffffff)"
       # Body for texto/bio
       - label: Contenido
         name: body

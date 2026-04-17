@@ -2,8 +2,9 @@
 interface Props {
   images: string[];
   credits?: string;
+  fullscreen?: boolean;
 }
-const { images, credits } = Astro.props;
+const { images, credits, fullscreen } = Astro.props;
 ---
 <article class="post" data-category="fotos">
   {images.length === 1 ? (
