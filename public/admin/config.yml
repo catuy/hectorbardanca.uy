@@ -1,5 +1,3 @@
-local_backend: true
-
 backend:
   name: github
   repo: catuy/hectorbardanca.uy
@@ -9,61 +7,39 @@ media_folder: public/assets/img
 public_folder: /assets/img
 
 collections:
-  - name: posts
-    label: Posts
+  - name: videos
+    label: Videos
     folder: src/content/posts
     create: true
-    slug: "{{slug}}"
-    identifier_field: title
-    summary: "{{title}} ({{type}})"
+    slug: "video-{{slug}}"
+    filter: { field: type, value: video }
+    summary: "{{title}}"
     fields:
-      - label: Tipo
-        name: type
-        widget: select
-        options:
-          - { label: "Video", value: "video" }
-          - { label: "Disco", value: "disco" }
-          - { label: "Texto", value: "texto" }
-          - { label: "Foto", value: "foto" }
-          - { label: "Bio", value: "bio" }
-      - label: Título
-        name: title
-        widget: string
-      - label: Orden
-        name: order
-        widget: number
-        hint: "Número que determina la posición en el feed (menor = más arriba)"
-      - label: Año
-        name: year
-        widget: number
-        required: false
-      - label: Descripción
-        name: description
-        widget: text
-        required: false
-      - label: Créditos
-        name: credits
-        widget: text
-        required: false
-      - label: Imágenes
-        name: images
-        widget: list
-        required: false
-        field:
-          label: Imagen
-          name: image
-          widget: image
-      # Video fields
-      - label: URL embed (video)
-        name: embed
-        widget: string
-        required: false
-        hint: "URL de embed de Archive.org o YouTube"
-      # Disco fields
-      - label: Artista
-        name: artist
-        widget: string
-        required: false
+      - { label: Tipo, name: type, widget: hidden, default: video }
+      - { label: Título, name: title, widget: string }
+      - { label: Orden, name: order, widget: number, hint: "Menor = más arriba" }
+      - { label: URL embed, name: embed, widget: string, hint: "URL de embed de Archive.org" }
+      - { label: Año, name: year, widget: number, required: false }
+      - { label: Descripción, name: description, widget: text, required: false }
+      - { label: Créditos, name: credits, widget: text, required: false }
+      - { label: Mostrar título, name: showTitle, widget: boolean, required: false, default: true }
+      - { label: Pantalla completa, name: fullscreen, widget: boolean, required: false, default: false }
+      - { label: Color de fondo, name: bgColor, widget: color, required: false }
+      - { label: Color de texto, name: textColor, widget: color, required: false }
+
+  - name: discos
+    label: Discos
+    folder: src/content/posts
+    create: true
+    slug: "disco-{{slug}}"
+    filter: { field: type, value: disco }
+    summary: "{{title}} — {{artist}}"
+    fields:
+      - { label: Tipo, name: type, widget: hidden, default: disco }
+      - { label: Título, name: title, widget: string }
+      - { label: Artista, name: artist, widget: string }
+      - { label: Orden, name: order, widget: number, hint: "Menor = más arriba" }
+      - { label: Año, name: year, widget: number, required: false }
       - label: Cover
         name: cover
         widget: image
@@ -73,38 +49,75 @@ collections:
         widget: list
         required: false
         fields:
-          - label: Título
-            name: title
-            widget: string
-          - label: Archivo
-            name: file
-            widget: string
-            hint: "Ruta al archivo MP3, ej: /assets/audio/album/track.mp3"
-      # Display options
-      - label: Mostrar título en el sitio
-        name: showTitle
-        widget: boolean
+          - { label: Título, name: title, widget: string }
+          - { label: Archivo, name: file, widget: string, hint: "Ruta al MP3, ej: /assets/audio/album/track.mp3" }
+      - { label: Descripción, name: description, widget: text, required: false }
+      - { label: Créditos, name: credits, widget: text, required: false }
+      - { label: Mostrar título, name: showTitle, widget: boolean, required: false, default: true }
+      - { label: Color de fondo, name: bgColor, widget: color, required: false }
+      - { label: Color de texto, name: textColor, widget: color, required: false }
+
+  - name: textos
+    label: Textos
+    folder: src/content/posts
+    create: true
+    slug: "texto-{{slug}}"
+    filter: { field: type, value: texto }
+    summary: "{{title}}"
+    fields:
+      - { label: Tipo, name: type, widget: hidden, default: texto }
+      - { label: Título, name: title, widget: string }
+      - { label: Orden, name: order, widget: number, hint: "Menor = más arriba" }
+      - { label: Contenido, name: body, widget: markdown }
+      - { label: Año, name: year, widget: number, required: false }
+      - { label: Créditos, name: credits, widget: text, required: false }
+      - label: Imágenes
+        name: images
+        widget: list
         required: false
-        default: true
-        hint: "Si está desactivado, el título solo se ve en el admin"
-      - label: Pantalla completa
-        name: fullscreen
-        widget: boolean
+        field: { label: Imagen, name: image, widget: image }
+      - { label: Mostrar título, name: showTitle, widget: boolean, required: false, default: true }
+      - { label: Color de fondo, name: bgColor, widget: color, required: false }
+      - { label: Color de texto, name: textColor, widget: color, required: false }
+
+  - name: fotos
+    label: Fotos
+    folder: src/content/posts
+    create: true
+    slug: "foto-{{slug}}"
+    filter: { field: type, value: foto }
+    summary: "{{title}}"
+    fields:
+      - { label: Tipo, name: type, widget: hidden, default: foto }
+      - { label: Título, name: title, widget: string }
+      - { label: Orden, name: order, widget: number, hint: "Menor = más arriba" }
+      - label: Imágenes
+        name: images
+        widget: list
+        field: { label: Imagen, name: image, widget: image }
+      - { label: Créditos, name: credits, widget: text, required: false }
+      - { label: Mostrar título, name: showTitle, widget: boolean, required: false, default: false }
+      - { label: Pantalla completa, name: fullscreen, widget: boolean, required: false, default: false }
+      - { label: Color de fondo, name: bgColor, widget: color, required: false }
+      - { label: Color de texto, name: textColor, widget: color, required: false }
+
+  - name: bio
+    label: Bio
+    folder: src/content/posts
+    create: true
+    slug: "bio-{{slug}}"
+    filter: { field: type, value: bio }
+    summary: "{{title}}"
+    fields:
+      - { label: Tipo, name: type, widget: hidden, default: bio }
+      - { label: Título, name: title, widget: string }
+      - { label: Orden, name: order, widget: number, hint: "Menor = más arriba" }
+      - { label: Contenido, name: body, widget: markdown }
+      - label: Imágenes
+        name: images
+        widget: list
         required: false
-        default: false
-        hint: "Imágenes y videos ocupan todo el ancho del navegador"
-      - label: Color de fondo
-        name: bgColor
-        widget: color
-        required: false
-        hint: "Color de fondo de la sección (ej: #000000)"
-      - label: Color de texto
-        name: textColor
-        widget: color
-        required: false
-        hint: "Color del texto de la sección (ej: #ffffff)"
-      # Body for texto/bio
-      - label: Contenido
-        name: body
-        widget: markdown
-        required: false
+        field: { label: Imagen, name: image, widget: image }
+      - { label: Créditos, name: credits, widget: text, required: false }
+      - { label: Color de fondo, name: bgColor, widget: color, required: false }
+      - { label: Color de texto, name: textColor, widget: color, required: false }
