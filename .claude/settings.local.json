@@ -92,7 +92,11 @@
       "Bash(lsof -ti:8081)",
       "Bash(cwebp -q 85 \"/Users/diego/www/hectorbardanca.uy/design/bardanca/1. CD -  Espejo perfector. Bardo Kan, 2015/000.png\" -o public/assets/img/espejo-perfector-cover.webp)",
       "Bash(npx @sveltia/cms-proxy-server)",
-      "Bash(git pull *)"
+      "Bash(git pull *)",
+      "Bash(node *)",
+      "Bash(git stash *)",
+      "Bash(ls src/content/posts/*/*.md)",
+      "Bash(curl -s file:///Users/diego/www/hectorbardanca.uy/dist/index.html)"
     ]
   }
 }

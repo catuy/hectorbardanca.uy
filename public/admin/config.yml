@@ -9,10 +9,9 @@ public_folder: /assets/img
 collections:
   - name: videos
     label: Videos
-    folder: src/content/posts
+    folder: src/content/posts/videos
     create: true
-    slug: "video-{{slug}}"
-    filter: { field: type, value: video }
+    slug: "{{slug}}"
     summary: "{{title}}"
     fields:
       - { label: Tipo, name: type, widget: hidden, default: video }
@@ -29,10 +28,9 @@ collections:
 
   - name: discos
     label: Discos
-    folder: src/content/posts
+    folder: src/content/posts/discos
     create: true
-    slug: "disco-{{slug}}"
-    filter: { field: type, value: disco }
+    slug: "{{slug}}"
     summary: "{{title}} — {{artist}}"
     fields:
       - { label: Tipo, name: type, widget: hidden, default: disco }
@@ -59,10 +57,9 @@ collections:
 
   - name: textos
     label: Textos
-    folder: src/content/posts
+    folder: src/content/posts/textos
     create: true
-    slug: "texto-{{slug}}"
-    filter: { field: type, value: texto }
+    slug: "{{slug}}"
     summary: "{{title}}"
     fields:
       - { label: Tipo, name: type, widget: hidden, default: texto }
@@ -82,10 +79,9 @@ collections:
 
   - name: fotos
     label: Fotos
-    folder: src/content/posts
+    folder: src/content/posts/fotos
     create: true
-    slug: "foto-{{slug}}"
-    filter: { field: type, value: foto }
+    slug: "{{slug}}"
     summary: "{{title}}"
     fields:
       - { label: Tipo, name: type, widget: hidden, default: foto }
@@ -103,10 +99,9 @@ collections:
 
   - name: bio
     label: Bio
-    folder: src/content/posts
+    folder: src/content/posts/bio
     create: true
-    slug: "bio-{{slug}}"
-    filter: { field: type, value: bio }
+    slug: "{{slug}}"
     summary: "{{title}}"
     fields:
       - { label: Tipo, name: type, widget: hidden, default: bio }
