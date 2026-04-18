@@ -4,7 +4,7 @@ title: Espejo Perfector
 order: 3
 year: 2015
 artist: Bardo Kan
-cover: /assets/img/1-cd----espejo-perfector-bardo-kan-2015--001.webp
+cover: /assets/img/espejo-perfector-cover.webp
 tracks:
   - title: Ángel del oeste
     file: /assets/audio/espejo-perfector/01-angel-del-oeste-01.mp3
