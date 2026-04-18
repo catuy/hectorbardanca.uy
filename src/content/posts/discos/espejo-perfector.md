@@ -2,7 +2,7 @@
 type: disco
 title: Espejo Perfector
 artist: Bardo Kan
-order: 10
+order: 3
 year: 2015
 cover: /assets/img/espejo-perfector-cover.webp
 tracks:
@@ -52,6 +52,6 @@ tracks:
     file: /assets/audio/espejo-perfector/22-ukelele-pulga-saltadora-22.mp3
 description: ''
 credits: ''
-bgColor: '#a51a48'
-textColor: '#000000'
+bgColor: '#000000'
+textColor: '#a61948'
 ---
