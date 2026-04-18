@@ -2,7 +2,7 @@
 type: disco
 title: Espejo Perfector
 artist: Bardo Kan
-order: 3
+order: 10
 year: 2015
 cover: /assets/img/espejo-perfector-cover.webp
 tracks:

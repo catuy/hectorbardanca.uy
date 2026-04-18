@@ -3,7 +3,7 @@ type: disco
 title: "Portavoz"
 artist: "Bardo Kan & Pollo Píriz"
 year: 2002
-order: 11
+order: 31
 cover: /assets/img/3-cd---portavoz-bardo-kan--pollo-piriz-2002--portavoz001.webp
 tracks:
   - title: "Muñeca"

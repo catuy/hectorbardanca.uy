@@ -96,7 +96,12 @@
       "Bash(node *)",
       "Bash(git stash *)",
       "Bash(ls src/content/posts/*/*.md)",
-      "Bash(curl -s file:///Users/diego/www/hectorbardanca.uy/dist/index.html)"
+      "Bash(curl -s file:///Users/diego/www/hectorbardanca.uy/dist/index.html)",
+      "Bash(ffmpeg -y -i \"/Users/diego/www/hectorbardanca.uy/design/bardanca/cortina.m4a\" -b:a 128k -ar 44100 public/assets/audio/cortina.mp3)",
+      "Bash(sed -i '' 's/^order: 5/order: 13/' fotos/sketch-1.md)",
+      "Bash(sed -i '' 's/^order: 12/order: 32/' fotos/sketch-2.md)",
+      "Bash(sed -i '' 's/^order: 18/order: 55/' fotos/bardo-kan.md)",
+      "Bash(sort -t: -k3 -n)"
     ]
   }
 }

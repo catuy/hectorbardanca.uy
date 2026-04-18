@@ -3,7 +3,7 @@ type: disco
 title: "Librillo de Job"
 artist: "Bardo Kan & Pollo Píriz"
 year: 2007
-order: 8
+order: 21
 cover: /assets/img/2-cd---librillo-de-job-bardo-kan--pollo-piriz-2007--tapa.webp
 tracks:
   - title: "La canción de la tierra"

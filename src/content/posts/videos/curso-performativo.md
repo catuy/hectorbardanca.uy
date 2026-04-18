@@ -1,7 +1,7 @@
 ---
 type: video
 title: "Curso de lo performativo"
-order: 17
+order: 20
 embed: https://archive.org/embed/hector-bardanca-curso-performativo
 description: "Taller"
 ---

@@ -1,9 +1,9 @@
 // ── Global Audio Controller ──
 const soundToggle = document.getElementById('sound-toggle');
 const trackAudio = new Audio();
-const ambientAudio = new Audio('/assets/audio/espejo-perfector/01-angel-del-oeste-01.mp3');
+const ambientAudio = new Audio('/assets/audio/cortina.mp3');
 ambientAudio.loop = true;
-ambientAudio.volume = 0.15;
+ambientAudio.volume = 0.8;
 
 let currentTrack = null;
 let audioEnabled = false;
