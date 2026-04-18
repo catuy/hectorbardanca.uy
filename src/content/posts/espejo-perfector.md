@@ -3,6 +3,11 @@ type: disco
 title: Espejo Perfector
 order: 3
 year: 2015
+description: ''
+credits: ''
+images:
+  - /assets/img/1-cd----espejo-perfector-bardo-kan-2015--002.webp
+embed: ''
 artist: Bardo Kan
 cover: /assets/img/espejo-perfector-cover.webp
 tracks:
@@ -50,6 +55,6 @@ tracks:
     file: /assets/audio/espejo-perfector/21-taxis-21.mp3
   - title: Ukelele (pulga saltadora)
     file: /assets/audio/espejo-perfector/22-ukelele-pulga-saltadora-22.mp3
-bgColor: "#ffdaf5"
-textColor: "#d30000"
+bgColor: '#ffdaf5'
+textColor: '#d30000'
 ---
