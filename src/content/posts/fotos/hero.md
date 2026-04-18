@@ -2,12 +2,12 @@
 type: foto
 title: Portada
 order: 1
-description: asdadas asdasdasdasd
-credits: "Sala Zitarrosa, CINCOnSENTIDOS, 2006. Foto: Erika Bernhard"
 images:
   - /assets/img/portada.webp
+credits: 'Sala Zitarrosa, CINCOnSENTIDOS, 2006. Foto: Erika Bernhard'
 showTitle: false
 fullscreen: true
-bgColor: "#b90700"
-textColor: "#000000"
+bgColor: '#6b347e'
+textColor: '#000000'
+description: asdadas asdasdasdasd
 ---
