@@ -5,8 +5,7 @@ order: 3
 year: 2015
 description: ''
 credits: ''
-images:
-  - /assets/img/1-cd----espejo-perfector-bardo-kan-2015--002.webp
+images: []
 embed: ''
 artist: Bardo Kan
 cover: /assets/img/espejo-perfector-cover.webp
