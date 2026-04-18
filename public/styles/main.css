@@ -4,7 +4,7 @@ h1, h2, h3, h4, h5, h6 { font-size: inherit; font-weight: inherit; }
 
 :root {
   --font: 'Inter', sans-serif;
-  --fs: 18px;
+  --fs: 20px;
   --lh: 1.7;
 }
 
@@ -52,16 +52,32 @@ body {
 }
 
 .nav__sound {
-  font-size: var(--fs);
-  font-weight: 400;
-  letter-spacing: 2px;
-  text-transform: uppercase;
   color: inherit;
   background: none;
   border: none;
-  padding: 0;
   cursor: pointer;
-  font-family: var(--font);
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav__sound svg {
+  display: block;
+}
+
+.nav__sound.off .sound-waves {
+  display: none;
+}
+
+.nav__sound.off::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 2px;
+  background: currentColor;
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .nav__filter.active::after {

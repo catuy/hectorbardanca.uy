@@ -1,7 +1,62 @@
-// Audio player
-const audioEl = new Audio();
-let currentTrack = null;
+// ── Global Audio Controller ──
+const soundToggle = document.getElementById('sound-toggle');
+const trackAudio = new Audio();
+const ambientAudio = new Audio('/assets/audio/espejo-perfector/01-angel-del-oeste-01.mp3');
+ambientAudio.loop = true;
+ambientAudio.volume = 0.15;
 
+let currentTrack = null;
+let audioEnabled = false;
+let activeVideoIframe = null;
+
+function stopAllVideos() {
+  document.querySelectorAll('.post-video__embed').forEach((iframe) => {
+    const src = iframe.getAttribute('data-src') || iframe.src;
+    if (!iframe.getAttribute('data-src')) {
+      iframe.setAttribute('data-src', iframe.src);
+    }
+    iframe.src = 'about:blank';
+    activeVideoIframe = null;
+  });
+}
+
+function restoreVideos() {
+  document.querySelectorAll('.post-video__embed').forEach((iframe) => {
+    const src = iframe.getAttribute('data-src');
+    if (src && iframe.src !== src) {
+      iframe.src = src;
+    }
+  });
+}
+
+function setAudioEnabled(on) {
+  audioEnabled = on;
+  if (soundToggle) {
+    soundToggle.classList.toggle('off', !on);
+  }
+}
+
+function stopAll() {
+  // Stop track
+  trackAudio.pause();
+  if (currentTrack) {
+    currentTrack.classList.remove('active');
+    currentTrack.querySelector('.post-disco__track-btn').textContent = '▶';
+    currentTrack = null;
+  }
+  // Stop ambient
+  ambientAudio.pause();
+  // Stop all videos
+  stopAllVideos();
+}
+
+function playAmbient() {
+  if (audioEnabled) {
+    ambientAudio.play();
+  }
+}
+
+// ── Track player ──
 document.addEventListener('click', (e) => {
   const trackEl = e.target.closest('.post-disco__track');
   if (!trackEl) return;
@@ -9,32 +64,39 @@ document.addEventListener('click', (e) => {
   const src = trackEl.dataset.src;
   if (!src) return;
 
+  // Toggle same track
   if (currentTrack === trackEl) {
-    if (audioEl.paused) {
-      audioEl.play();
+    if (trackAudio.paused) {
+      stopAll();
+      setTimeout(restoreVideos, 100);
+      trackAudio.play();
       trackEl.classList.add('active');
       trackEl.querySelector('.post-disco__track-btn').textContent = '⏸';
+      setAudioEnabled(true);
     } else {
-      audioEl.pause();
+      trackAudio.pause();
       trackEl.classList.remove('active');
       trackEl.querySelector('.post-disco__track-btn').textContent = '▶';
+      currentTrack = null;
+      // Nothing playing → ambient or disable
+      playAmbient();
     }
     return;
   }
 
-  if (currentTrack) {
-    currentTrack.classList.remove('active');
-    currentTrack.querySelector('.post-disco__track-btn').textContent = '▶';
-  }
-
-  audioEl.src = src;
-  audioEl.play();
+  // New track
+  stopAll();
+  setTimeout(restoreVideos, 100);
+  trackAudio.src = src;
+  trackAudio.play();
   trackEl.classList.add('active');
   trackEl.querySelector('.post-disco__track-btn').textContent = '⏸';
   currentTrack = trackEl;
+  setAudioEnabled(true);
 });
 
-audioEl.addEventListener('ended', () => {
+// Auto-advance to next track, then ambient
+trackAudio.addEventListener('ended', () => {
   if (!currentTrack) return;
   const next = currentTrack.nextElementSibling;
   if (next && next.classList.contains('post-disco__track')) {
@@ -43,10 +105,64 @@ audioEl.addEventListener('ended', () => {
     currentTrack.classList.remove('active');
     currentTrack.querySelector('.post-disco__track-btn').textContent = '▶';
     currentTrack = null;
+    playAmbient();
   }
 });
 
-// Filters
+// ── Video awareness ──
+// When user clicks a video iframe, stop track/ambient audio
+window.addEventListener('blur', () => {
+  const active = document.activeElement;
+  if (active && active.classList && active.classList.contains('post-video__embed')) {
+    trackAudio.pause();
+    if (currentTrack) {
+      currentTrack.classList.remove('active');
+      currentTrack.querySelector('.post-disco__track-btn').textContent = '▶';
+      currentTrack = null;
+    }
+    ambientAudio.pause();
+    setAudioEnabled(true);
+  }
+});
+
+// Stop videos when they scroll out of view
+const videoObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) {
+      const iframe = entry.target;
+      const src = iframe.getAttribute('data-src') || iframe.src;
+      if (src && src !== 'about:blank') {
+        iframe.setAttribute('data-src', src);
+        iframe.src = 'about:blank';
+        setTimeout(() => { iframe.src = src; }, 50);
+      }
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.post-video__embed').forEach((iframe) => {
+  iframe.setAttribute('data-src', iframe.src);
+  videoObserver.observe(iframe);
+});
+
+// ── Master toggle ──
+if (soundToggle) {
+  soundToggle.classList.add('off');
+  soundToggle.addEventListener('click', () => {
+    if (audioEnabled) {
+      // Turn off everything
+      stopAll();
+      setTimeout(restoreVideos, 100);
+      setAudioEnabled(false);
+    } else {
+      // Turn on ambient
+      setAudioEnabled(true);
+      playAmbient();
+    }
+  });
+}
+
+// ── Filters ──
 const filters = document.querySelectorAll('.nav__filter');
 const posts = document.querySelectorAll('.post');
 let activeFilter = null;
@@ -89,27 +205,7 @@ filters.forEach((btn) => {
   });
 });
 
-// Ambient sound
-const soundToggle = document.getElementById('sound-toggle');
-const ambientAudio = new Audio('/assets/audio/espejo-perfector/01-angel-del-oeste-01.mp3');
-ambientAudio.loop = true;
-ambientAudio.volume = 0.15;
-let soundOn = false;
-
-if (soundToggle) {
-  soundToggle.addEventListener('click', () => {
-    soundOn = !soundOn;
-    if (soundOn) {
-      ambientAudio.play();
-      soundToggle.textContent = 'Sound ON';
-    } else {
-      ambientAudio.pause();
-      soundToggle.textContent = 'Sound OFF';
-    }
-  });
-}
-
-// Nav color sync and random positioning
+// ── Nav color sync and random positioning ──
 const nav = document.querySelector('.nav');
 const navItems = nav.querySelectorAll(':scope > *');
 const sections = document.querySelectorAll('.post-section');
@@ -120,7 +216,6 @@ function placeItems() {
   const totalItemsWidth = items.reduce((s, el) => s + el.offsetWidth, 0);
   const freeSpace = Math.max(0, window.innerWidth - totalItemsWidth);
 
-  // items.length + 1 slots: before first, between each, after last
   const slots = items.length + 1;
   const rands = Array.from({ length: slots }, () => Math.random());
   const randSum = rands.reduce((s, r) => s + r, 0);
