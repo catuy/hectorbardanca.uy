@@ -10,5 +10,5 @@ credits: ''
 showTitle: true
 fullscreen: false
 bgColor: '#000000'
-textColor: '#a51a48'
+textColor: '#ffffff'
 ---
