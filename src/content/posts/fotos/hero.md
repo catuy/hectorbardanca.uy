@@ -7,7 +7,7 @@ images:
 credits: 'Sala Zitarrosa, CINCOnSENTIDOS, 2006. Foto: Erika Bernhard'
 showTitle: false
 fullscreen: true
-bgColor: '#6b347e'
+bgColor: '#891616'
 textColor: '#000000'
 description: asdadas asdasdasdasd
 ---
