@@ -1,9 +1,9 @@
 ---
 type: disco
 title: Espejo Perfector
+artist: Bardo Kan
 order: 3
 year: 2015
-artist: Bardo Kan
 cover: /assets/img/espejo-perfector-cover.webp
 tracks:
   - title: Ángel del oeste
@@ -50,6 +50,8 @@ tracks:
     file: /assets/audio/espejo-perfector/21-taxis-21.mp3
   - title: Ukelele (pulga saltadora)
     file: /assets/audio/espejo-perfector/22-ukelele-pulga-saltadora-22.mp3
-bgColor: "#ffdaf5"
-textColor: "#d30000"
+description: ''
+credits: ''
+bgColor: '#a51a48'
+textColor: '#ffffff'
 ---
