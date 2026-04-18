@@ -1,14 +1,14 @@
 ---
 type: foto
-title: Fotos Espejo Perfector
-order: 4
+title: Espejo Perfector
+order: 3
 images:
   - /assets/img/1-cd----espejo-perfector-bardo-kan-2015--003.webp
   - /assets/img/1-cd----espejo-perfector-bardo-kan-2015--002.webp
   - /assets/img/1-cd----espejo-perfector-bardo-kan-2015--004.webp
 credits: ''
-showTitle: false
-fullscreen: true
+showTitle: true
+fullscreen: false
 bgColor: ''
 textColor: '#a51a48'
 ---
