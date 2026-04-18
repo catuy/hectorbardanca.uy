@@ -9,6 +9,6 @@ images:
 credits: ''
 showTitle: true
 fullscreen: false
-bgColor: ''
+bgColor: '#000000'
 textColor: '#a51a48'
 ---
