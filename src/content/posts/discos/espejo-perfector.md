@@ -53,5 +53,5 @@ tracks:
 description: ''
 credits: ''
 bgColor: '#a51a48'
-textColor: '#ffffff'
+textColor: '#000000'
 ---
