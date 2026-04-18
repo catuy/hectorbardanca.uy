@@ -1,7 +1,7 @@
 ---
 type: foto
 title: Espejo Perfector
-order: 11
+order: 2
 images:
   - /assets/img/1-cd----espejo-perfector-bardo-kan-2015--003.webp
   - /assets/img/1-cd----espejo-perfector-bardo-kan-2015--002.webp
