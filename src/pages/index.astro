@@ -9,13 +9,16 @@ const allPosts = await getCollection('posts');
 const sorted = allPosts.sort((a, b) => a.data.order - b.data.order);
 ---
 <Base>
-  <nav class="nav">
+  <nav class="nav nav--top">
     <button class="nav__filter active" data-filter="videos">Videos</button>
     <button class="nav__filter active" data-filter="musica">Discos</button>
     <button class="nav__filter active" data-filter="fotos">Fotos</button>
+  </nav>
+  <nav class="nav nav--bottom">
     <button class="nav__filter active" data-filter="textos">Textos</button>
     <button class="nav__filter active" data-filter="bio">Curry</button>
     <button class="nav__sound" id="sound-toggle" aria-label="Sonido"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path class="sound-waves" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
+    <a href="https://github.com/catuy/hectorbardanca.uy" class="nav__code" target="_blank" aria-label="Código fuente">&lt;/&gt;</a>
   </nav>
   <div class="feed">
     {sorted.map(async (post) => {
@@ -82,7 +85,4 @@ const sorted = allPosts.sort((a, b) => a.data.order - b.data.order);
       }
     })}
   </div>
-  <footer class="footer">
-    <p>Código es arte. <a href="https://github.com/catuy/hectorbardanca.uy">Sitio abierto</a>.</p>
-  </footer>
 </Base>

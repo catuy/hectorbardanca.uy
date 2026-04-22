@@ -205,23 +205,39 @@ filters.forEach((btn) => {
   });
 });
 
-// ── Nav color sync and random positioning ──
-const nav = document.querySelector('.nav');
-const navItems = nav.querySelectorAll(':scope > *');
+// ── Nav color sync and random letter-spacing ──
+const navs = document.querySelectorAll('.nav');
+const allNavItems = document.querySelectorAll('.nav > *');
 const sections = document.querySelectorAll('.post-section');
 let currentSection = null;
 
-function placeItems() {
-  const items = Array.from(navItems);
-  const totalItemsWidth = items.reduce((s, el) => s + el.offsetWidth, 0);
-  const freeSpace = Math.max(0, window.innerWidth - totalItemsWidth);
+// Split each nav item text into individual letter spans
+navs.forEach((nav) => {
+  nav.querySelectorAll(':scope > *').forEach((el) => {
+    // Skip sound button (has SVG)
+    if (el.querySelector('svg')) return;
+    const text = el.textContent;
+    el.textContent = '';
+    for (const char of text) {
+      const span = document.createElement('span');
+      span.textContent = char;
+      span.className = 'nav__letter';
+      el.appendChild(span);
+    }
+  });
+});
 
-  const slots = items.length + 1;
-  const rands = Array.from({ length: slots }, () => Math.random());
-  const randSum = rands.reduce((s, r) => s + r, 0);
-
-  items.forEach((el, i) => {
-    el.style.marginLeft = Math.round((rands[i] / randSum) * freeSpace) + 'px';
+function randomizeSpacing() {
+  navs.forEach((nav) => {
+    const items = Array.from(nav.querySelectorAll(':scope > *'));
+    const weights = items.map(() => 1 + Math.random() * 4);
+    items.forEach((el, i) => {
+      el.style.flex = weights[i] + ' 1 0px';
+      // Vary letter-spacing per letter
+      el.querySelectorAll('.nav__letter').forEach((span) => {
+        span.style.letterSpacing = (Math.random() * 40) + 'px';
+      });
+    });
   });
 }
 
@@ -244,16 +260,16 @@ function updateNav() {
     const color = next.style.color || '#000000';
     const same = next.classList.contains('post-section--nav-same');
 
-    navItems.forEach((item) => {
+    allNavItems.forEach((item) => {
       item.style.color = same ? color : bg;
       item.style.backgroundColor = same ? bg : color;
     });
 
-    placeItems();
+    randomizeSpacing();
   }
 }
 
 window.addEventListener('scroll', updateNav, { passive: true });
-window.addEventListener('resize', placeItems);
-placeItems();
+window.addEventListener('resize', randomizeSpacing);
+randomizeSpacing();
 updateNav();
