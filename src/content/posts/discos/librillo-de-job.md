@@ -29,5 +29,5 @@ tracks:
 description: ''
 credits: ''
 bgColor: '#000000'
-textColor: '#b765fb'
+textColor: '#8e7cd6'
 ---
