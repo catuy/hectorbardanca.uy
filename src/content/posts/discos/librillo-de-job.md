@@ -28,6 +28,6 @@ tracks:
     file: /assets/audio/librillo-de-job/10-tiki-tiki-taka.mp3
 description: ''
 credits: ''
-bgColor: '#1d1f20'
+bgColor: '#1a1b24'
 textColor: '#8e7cd6'
 ---
