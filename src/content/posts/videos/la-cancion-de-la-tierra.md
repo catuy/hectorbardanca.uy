@@ -6,7 +6,7 @@ embed: https://archive.org/embed/hector-bardanca-la-cancion-de-la-tierra
 year: null
 description: Bardo Kan & Pollo Píriz
 credits: ''
-fullscreen: true
+fullscreen: false
 bgColor: '#000000'
 textColor: '#8e7cd6'
 ---
