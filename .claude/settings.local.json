@@ -111,7 +111,17 @@
       "Bash(sed -i '' 's/^order: .*/order: 10/' discos/espejo-perfector.md)",
       "Bash(sed -i '' 's/^order: .*/order: 11/' fotos/espejo-perfector.md)",
       "Bash(sed -i '' 's/^order: .*/order: 12/' videos/la-cancion-de-la-tierra.md)",
-      "Bash(sed -i '' 's/^order: .*/order: 20/' videos/curso-performativo.md)"
+      "Bash(sed -i '' 's/^order: .*/order: 20/' videos/curso-performativo.md)",
+      "WebSearch",
+      "WebFetch(domain:tina.io)",
+      "WebFetch(domain:docs.astro.build)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:www.dandenney.com)",
+      "WebFetch(domain:fahim.gg)",
+      "Bash(lsof -ti:4001)",
+      "Bash(npm run *)",
+      "Bash(lsof -ti:4321 -ti:4001)",
+      "Bash(python3 *)"
     ]
   }
 }

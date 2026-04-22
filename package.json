@@ -7,11 +7,21 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "dev:tina": "tinacms dev -c \"astro dev\"",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.1.7"
+    "@astrojs/react": "^5.0.4",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^6.1.7",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "tinacms": "^3.7.3"
+  },
+  "devDependencies": {
+    "@tinacms/cli": "^2.2.3"
   }
 }

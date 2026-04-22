@@ -1,12 +1,82 @@
 ---
 import Base from '../layouts/Base.astro';
-import VideoPost from '../components/VideoPost.astro';
-import DiscoPost from '../components/DiscoPost.astro';
-import FotoPost from '../components/FotoPost.astro';
-import { getCollection, render } from 'astro:content';
+import Feed from '../components/Feed';
+import client from '../../tina/__generated__/client';
 
-const allPosts = await getCollection('posts');
-const sorted = allPosts.sort((a, b) => a.data.order - b.data.order);
+const query = `query ($relativePath: String!) {
+  page(relativePath: $relativePath) {
+    title
+    blocks {
+      ... on PageBlocksVideo {
+        __typename
+        title
+        embed
+        description
+        credits
+        year
+        showTitle
+        fullscreen
+        bgColor
+        textColor
+      }
+      ... on PageBlocksDisco {
+        __typename
+        title
+        artist
+        year
+        cover
+        tracks { title file }
+        description
+        credits
+        showTitle
+        fullscreen
+        bgColor
+        textColor
+      }
+      ... on PageBlocksFoto {
+        __typename
+        title
+        images
+        credits
+        showTitle
+        fullscreen
+        bgColor
+        textColor
+      }
+      ... on PageBlocksTexto {
+        __typename
+        title
+        content
+        year
+        credits
+        images
+        showTitle
+        fullscreen
+        bgColor
+        textColor
+      }
+      ... on PageBlocksBio {
+        __typename
+        title
+        content
+        images
+        credits
+        bgColor
+        textColor
+      }
+    }
+  }
+}`;
+
+const variables = { relativePath: 'home.mdx' };
+
+let data: any = {};
+try {
+  const res = await client.request({ query, variables });
+  data = res?.data || {};
+} catch (e) {
+  console.warn('TinaCMS not available:', e);
+}
 ---
 <Base>
   <nav class="nav nav--top">
@@ -20,69 +90,5 @@ const sorted = allPosts.sort((a, b) => a.data.order - b.data.order);
     <button class="nav__sound" id="sound-toggle" aria-label="Sonido"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path class="sound-waves" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
     <a href="https://github.com/catuy/hectorbardanca.uy" class="nav__code" target="_blank" aria-label="Código fuente">&lt;/&gt;</a>
   </nav>
-  <div class="feed">
-    {sorted.map(async (post) => {
-      const { data } = post;
-      const fs = data.fullscreen ? ' post-section--full' : '';
-      const navSame = data.order === 1 ? ' post-section--nav-same' : '';
-      const bg = data.bgColor || '#ffffff';
-      const txt = data.textColor || '#000000';
-      const styles = `background-color: ${bg}; color: ${txt}; --section-bg: ${bg}; --section-text: ${txt}`;
-      const label = [data.title, data.description || data.credits].filter(Boolean).join(' / ');
-
-      if (data.type === 'video' && data.embed) {
-        return (
-          <section class={`post-section${fs}${navSame}`} style={styles}>
-            <VideoPost title={data.title} embed={data.embed} label={label} />
-          </section>
-        );
-      }
-
-      if (data.type === 'disco') {
-        return (
-          <section class={`post-section${fs}${navSame}`} style={styles}>
-            <DiscoPost title={data.title} artist={data.artist} year={data.year} cover={data.cover} tracks={data.tracks} />
-          </section>
-        );
-      }
-
-      if (data.type === 'texto') {
-        const { Content } = await render(post);
-        return (
-          <section class={`post-section${fs}${navSame}`} style={styles}>
-            <article class="post post-inner" data-category="textos">
-              <h2 class="post-texto__title">{data.title}</h2>
-              <div class="post-texto__body"><Content /></div>
-            </article>
-          </section>
-        );
-      }
-
-      if (data.type === 'foto' && data.images) {
-        const fotoLabel = [data.title, data.credits].filter(Boolean).join(' / ');
-        return (
-          <section class={`post-section${fs}${navSame}`} style={styles}>
-            <FotoPost images={data.images} credits={data.fullscreen ? undefined : data.credits} />
-            {data.fullscreen && fotoLabel && <span class="post-credits">{fotoLabel}</span>}
-          </section>
-        );
-      }
-
-      if (data.type === 'bio') {
-        const { Content } = await render(post);
-        return (
-          <section class={`post-section${fs}${navSame}`} style={styles}>
-            <article class="post post-bio post-inner" data-category="bio">
-              <h2 class="post-bio__title">{data.title}</h2>
-              <div class="post-bio__body"><Content /></div>
-              {data.images && data.images.length > 0 && (
-                <img class="post-bio__photo" src={data.images[0]} alt="Héctor Bardanca" loading="lazy" />
-              )}
-              {data.credits && <p class="post-bio__credits">{data.credits}</p>}
-            </article>
-          </section>
-        );
-      }
-    })}
-  </div>
+  <Feed client:load query={query} variables={variables} data={data} />
 </Base>
