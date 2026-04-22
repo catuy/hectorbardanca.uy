@@ -121,7 +121,8 @@
       "Bash(lsof -ti:4001)",
       "Bash(npm run *)",
       "Bash(lsof -ti:4321 -ti:4001)",
-      "Bash(python3 *)"
+      "Bash(python3 *)",
+      "Bash(lsof -ti:4321 -ti:4001 -ti:9000)"
     ]
   }
 }
