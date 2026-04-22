@@ -7,6 +7,6 @@ year: 1993
 description: Video, 1993
 credits: ''
 fullscreen: true
-bgColor: '#a61948'
+bgColor: '#ffffff'
 textColor: '#000000'
 ---

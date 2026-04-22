@@ -6,6 +6,6 @@ embed: https://archive.org/embed/hector-bardanca-curso-performativo
 year: null
 description: Taller
 credits: ''
-bgColor: '#a6a6a6'
-textColor: ''
+bgColor: '#ffffff'
+textColor: '#000000'
 ---

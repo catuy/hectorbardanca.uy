@@ -22,6 +22,6 @@ tracks:
     file: /assets/audio/ultimo-capitulo/07-to-be-continued.mp3
 description: ''
 credits: ''
-bgColor: '#4ca3c7'
+bgColor: '#ffffff'
 textColor: '#000000'
 ---

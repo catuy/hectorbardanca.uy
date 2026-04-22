@@ -5,8 +5,8 @@ order: 99
 images:
   - /assets/img/bio-solis-2009.webp
 credits: "Foto: Diego Cataldo, de H. B. en S. Zavala Muniz, Teatro Solís, 2009."
-bgColor: "#a6a6a6"
-textColor: "#000000"
+bgColor: '#ffffff'
+textColor: '#000000'
 ---
 
 1 - Héctor Bardanca, escritor, músico, performer, editor y productor; nació el 12 de abril de 1954, en Montevideo. Tomó cursos de batería y percusión con Roberto Serrentino y José Luis Pérez, y de análisis mesomusical con Coriún Aharonián. Participó en el IX Curso Latinoamericano de Música Contemporánea, en Itapira, Brasil, 1980. Asistió a la primera Escuela de Cine de Cinemateca Uruguaya en 1977, así como a talleres literarios de Enrique Fierro y Hugo Achugar en los años 80. Completó curso de inglés en la Alianza Cultural Uruguay - Estados Unidos y realizó algunos estudios de portugués en el ICUB (Instituto de Cultura Uruguayo-Brasileño), y de francés en la Alianza Francesa.

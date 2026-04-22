@@ -36,6 +36,6 @@ tracks:
     file: /assets/audio/portavoz/28-ezrata.mp3
 description: ''
 credits: ''
-bgColor: '#212224'
-textColor: '#ffffff'
+bgColor: '#ffffff'
+textColor: '#000000'
 ---

@@ -52,6 +52,6 @@ tracks:
     file: /assets/audio/espejo-perfector/22-ukelele-pulga-saltadora-22.mp3
 description: ''
 credits: ''
-bgColor: '#1b0405'
-textColor: '#c20013'
+bgColor: '#ffffff'
+textColor: '#000000'
 ---

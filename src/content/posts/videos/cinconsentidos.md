@@ -6,6 +6,6 @@ embed: https://archive.org/embed/hector-bardanca-cinconsentidos
 year: 2006
 description: Bardo Kan & Pollo Píriz, Sala Zitarrosa, 2006
 credits: ''
-bgColor: '#a6a6a6'
-textColor: '#3a3530'
+bgColor: '#ffffff'
+textColor: '#000000'
 ---

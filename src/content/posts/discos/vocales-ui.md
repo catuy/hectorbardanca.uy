@@ -14,6 +14,6 @@ tracks:
     file: /assets/audio/vocales-ui/03-music-is-my-remedy.mp3
 description: ''
 credits: ''
-bgColor: '#e62d38'
-textColor: ''
+bgColor: '#ffffff'
+textColor: '#000000'
 ---
