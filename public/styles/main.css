@@ -3,7 +3,7 @@
 h1, h2, h3, h4, h5, h6 { font-size: inherit; font-weight: inherit; }
 
 :root {
-  --font: 'Inter', sans-serif;
+  --font: 'Roboto Condensed', sans-serif;
   --fs: 20px;
   --lh: 1.7;
 }
