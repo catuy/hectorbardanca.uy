@@ -8,5 +8,5 @@ description: Bardo Kan & Pollo Píriz
 credits: ''
 fullscreen: true
 bgColor: '#000000'
-textColor: '#30265d'
+textColor: '#8e7cd6'
 ---
