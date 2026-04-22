@@ -2,7 +2,7 @@
 type: disco
 title: El último capítulo de la historia del mundo
 artist: Héctor Bardanca
-order: 14
+order: 40
 year: 1993
 cover: /assets/img/4-casete----el-ultimo-capitulo-de-la-historia-del-mundo--tapa001.webp
 tracks:

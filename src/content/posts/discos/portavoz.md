@@ -2,7 +2,7 @@
 type: disco
 title: Portavoz
 artist: Bardo Kan & Pollo Píriz
-order: 11
+order: 31
 year: 2002
 cover: /assets/img/3-cd---portavoz-bardo-kan--pollo-piriz-2002--portavoz001.webp
 tracks:
