@@ -5,7 +5,7 @@ order: 99
 images:
   - /assets/img/bio-solis-2009.webp
 credits: 'Foto: Diego Cataldo, de H. B. en S. Zavala Muniz, Teatro Solís, 2009.'
-bgColor: '#351717'
+bgColor: '#a6a6a6'
 textColor: '#000000'
 ---
 
