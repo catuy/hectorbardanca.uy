@@ -103,7 +103,8 @@
       "Bash(sed -i '' 's/^order: 18/order: 55/' fotos/bardo-kan.md)",
       "Bash(sort -t: -k3 -n)",
       "Bash(ffmpeg -y -i \"/Users/diego/Downloads/6. casete B02 Héctor Bardanca - Si el pampero la acaricia, 1986..mp3\" -b:a 128k -ar 44100 public/assets/audio/si-el-pampero/si-el-pampero-la-acaricia.mp3)",
-      "Bash(cwebp -q 85 \"/Users/diego/Downloads/WhatsApp Image 2026-04-20 at 21.13.03.jpeg\" -o public/assets/img/si-el-pampero-creditos.webp)"
+      "Bash(cwebp -q 85 \"/Users/diego/Downloads/WhatsApp Image 2026-04-20 at 21.13.03.jpeg\" -o public/assets/img/si-el-pampero-creditos.webp)",
+      "Bash(git merge *)"
     ]
   }
 }
