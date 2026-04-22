@@ -7,6 +7,6 @@ year: null
 description: Bardo Kan & Pollo Píriz
 credits: ''
 fullscreen: true
-bgColor: '#30265d'
-textColor: ''
+bgColor: '#000000'
+textColor: '#30265d'
 ---
