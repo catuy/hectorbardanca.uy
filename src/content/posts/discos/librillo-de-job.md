@@ -2,7 +2,7 @@
 type: disco
 title: Librillo de Job
 artist: Bardo Kan & Pollo Píriz
-order: 8
+order: 5
 year: 2007
 cover: /assets/img/2-cd---librillo-de-job-bardo-kan--pollo-piriz-2007--tapa.webp
 tracks:
