@@ -6,21 +6,14 @@
 
 Este es el sitio web de **Héctor Bardanca** — músico, performer, escritor, editor y productor uruguayo. Un archivo vivo de su obra: discos, videos, textos y fotografías, presentados en un feed vertical continuo con navegación por filtros.
 
-El sitio fue construido con la convicción de que **el código es una forma de escritura**, y que publicar un sitio web puede ser un acto tan creativo como componer una canción o escribir un poema. Por eso este proyecto es de **código abierto**.
+Este es un proyecto de código abierto. Podés clonarlo, modificarlo y usarlo como base para tu propio sitio.
 
-## Código abierto, arte abierto
-
-La cultura se construye sobre lo que otros hicieron antes. La música de Bardanca dialoga con Lazaroff, con Mateo, con la tradición rioplatense y con lo que viene después. Del mismo modo, este sitio dialoga con el código que otros escribieron y liberaron.
-
-**Este repositorio puede ser clonado, estudiado, modificado y reutilizado.** Si sos artista, músico, escritor o performer y necesitás un sitio para tu obra, podés tomar este como punto de partida. No hace falta pedir permiso. El arte no se guarda, se libera.
-
-Lo que encontrás acá:
-- Un sitio tipo portfolio/archivo con feed filtrable
-- Reproductor de audio integrado con tracklists por disco
+- Feed vertical filtrable (videos, discos, fotos, textos)
+- Reproductor de audio con tracklists
 - Videos embebidos desde Archive.org
-- CMS para editar contenido sin tocar código (Sveltia CMS)
-- Navegación con interletra variable y colores dinámicos por sección
-- Audio ambiental con control global
+- CMS visual para editar sin tocar código (TinaCMS + Sveltia)
+- Navegación con interletra variable y colores por sección
+- Audio ambiental
 - Deploy automático en Cloudflare Pages
 
 ## Stack
