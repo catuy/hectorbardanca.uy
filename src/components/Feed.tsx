@@ -1,6 +1,20 @@
 import { useTina, tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
+function RichContent({ content }: { content: any }) {
+  if (!content) return null;
+  // If it's a Tina AST object, use TinaMarkdown
+  if (typeof content === 'object' && content.type === 'root') {
+    return <TinaMarkdown content={content} />;
+  }
+  // If it's a plain string (from YAML fallback), render as paragraphs
+  if (typeof content === 'string') {
+    const paragraphs = content.split('\n\n').filter(Boolean);
+    return <>{paragraphs.map((p, i) => <p key={i}>{p}</p>)}</>;
+  }
+  return null;
+}
+
 function VideoBlock({ block, index }: { block: any; index: number }) {
   const label = [block.title, block.description || block.credits].filter(Boolean).join(' / ');
   return (
@@ -76,7 +90,7 @@ function TextoBlock({ block }: { block: any }) {
       <h2 className="post-texto__title" data-tina-field={tinaField(block, 'title')}>{block.title}</h2>
       {block.content && (
         <div className="post-texto__body" data-tina-field={tinaField(block, 'content')}>
-          <TinaMarkdown content={block.content} />
+          <RichContent content={block.content} />
         </div>
       )}
     </article>
@@ -89,7 +103,7 @@ function BioBlock({ block }: { block: any }) {
       <h2 className="post-bio__title" data-tina-field={tinaField(block, 'title')}>{block.title}</h2>
       {block.content && (
         <div className="post-bio__body" data-tina-field={tinaField(block, 'content')}>
-          <TinaMarkdown content={block.content} />
+          <RichContent content={block.content} />
         </div>
       )}
       {block.images && block.images.length > 0 && (
