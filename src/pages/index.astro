@@ -72,39 +72,30 @@ const query = `query ($relativePath: String!) {
 const variables = { relativePath: 'home.mdx' };
 
 let data: any = {};
-let tinaAvailable = false;
 
+// Read MDX frontmatter directly — works in build and dev
 try {
-  const client = (await import('../../tina/__generated__/client')).default;
-  const res = await client.request({ query, variables });
-  data = res?.data || {};
-  tinaAvailable = true;
-} catch (e) {
-  // Tina not running — read MDX frontmatter directly
-  try {
-    const mdxPath = path.resolve('src/content/pages/home.mdx');
-    const raw = fs.readFileSync(mdxPath, 'utf-8');
-    const fmMatch = raw.match(/^---\n([\s\S]*?)\n---/);
-    if (fmMatch) {
-      const yaml = await import('js-yaml');
-      // @ts-ignore
-      const parsed = yaml.default ? yaml.default.load(fmMatch[1]) : yaml.load(fmMatch[1]);
-      // Map _template to __typename for Feed component
-      const blocks = (parsed.blocks || []).map((b: any) => {
-        const templateMap: Record<string, string> = {
-          video: 'PageBlocksVideo',
-          disco: 'PageBlocksDisco',
-          foto: 'PageBlocksFoto',
-          texto: 'PageBlocksTexto',
-          bio: 'PageBlocksBio',
-        };
-        return { ...b, __typename: templateMap[b._template] || b._template };
-      });
-      data = { page: { title: parsed.title, blocks } };
-    }
-  } catch (e2) {
-    console.warn('Failed to read home.mdx:', e2);
+  const mdxPath = path.resolve('src/content/pages/home.mdx');
+  const raw = fs.readFileSync(mdxPath, 'utf-8');
+  const fmMatch = raw.match(/^---\n([\s\S]*?)\n---/);
+  if (fmMatch) {
+    const yaml = await import('js-yaml');
+    // @ts-ignore
+    const parsed = yaml.default ? yaml.default.load(fmMatch[1]) : yaml.load(fmMatch[1]);
+    const blocks = (parsed.blocks || []).map((b: any) => {
+      const templateMap: Record<string, string> = {
+        video: 'PageBlocksVideo',
+        disco: 'PageBlocksDisco',
+        foto: 'PageBlocksFoto',
+        texto: 'PageBlocksTexto',
+        bio: 'PageBlocksBio',
+      };
+      return { ...b, __typename: templateMap[b._template] || b._template };
+    });
+    data = { page: { title: parsed.title, blocks } };
   }
+} catch (e) {
+  console.warn('Failed to read home.mdx:', e);
 }
 ---
 <Base>
