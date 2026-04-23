@@ -3,6 +3,7 @@ dist/
 # generated types
 .astro/
 tina/__generated__/
+public/admin/
 
 # dependencies
 node_modules/
