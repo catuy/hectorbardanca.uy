@@ -8,8 +8,8 @@ const displayFields: any[] = [
 
 export default defineConfig({
   branch: 'master',
-  clientId: '',
-  token: '',
+  clientId: process.env.TINA_CLIENT_ID || 'a58e8612-cd1a-4094-ba49-ae2147e3be6c',
+  token: process.env.TINA_TOKEN || '6dfdecd226c287c11ce4a69883821fbf7fd72eee',
   build: {
     outputFolder: 'admin',
     publicFolder: 'public',
