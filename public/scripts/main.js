@@ -261,8 +261,8 @@ function updateNav() {
     const same = next.classList.contains('post-section--nav-same');
 
     allNavItems.forEach((item) => {
-      item.style.color = same ? color : bg;
-      item.style.backgroundColor = same ? bg : color;
+      item.style.color = color;
+      item.style.backgroundColor = bg;
     });
 
     randomizeSpacing();
