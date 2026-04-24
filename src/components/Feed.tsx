@@ -99,12 +99,12 @@ function TextoBlock({ block }: { block: any }) {
           ))}
         </div>
       )}
+      {block.credits && <p className={creditsClass} data-tina-field={tinaField(block, 'credits')}>{block.credits}</p>}
       {block.content && (
         <div className={block.fitScreen ? 'post-texto__body post-foto__credits--center' : 'post-texto__body'} data-tina-field={tinaField(block, 'content')}>
           <RichContent content={block.content} />
         </div>
       )}
-      {block.credits && <p className={creditsClass} data-tina-field={tinaField(block, 'credits')}>{block.credits}</p>}
     </article>
   );
 }
