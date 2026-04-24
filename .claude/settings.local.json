@@ -123,7 +123,8 @@
       "Bash(lsof -ti:4321 -ti:4001)",
       "Bash(python3 *)",
       "Bash(lsof -ti:4321 -ti:4001 -ti:9000)",
-      "Bash(curl -s https://hectorbardanca.uy)"
+      "Bash(curl -s https://hectorbardanca.uy)",
+      "Bash(git rebase *)"
     ]
   }
 }

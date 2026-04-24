@@ -1,7 +1,9 @@
 import { defineConfig } from 'tinacms';
 
 const displayFields: any[] = [
+  { type: 'boolean', name: 'showTitle', label: 'Mostrar título' },
   { type: 'boolean', name: 'fullscreen', label: 'Pantalla completa' },
+  { type: 'boolean', name: 'fitScreen', label: 'Imagen cabe en pantalla', description: 'La imagen no supera el alto de la ventana' },
   { type: 'string', name: 'bgColor', label: 'Color de fondo', ui: { component: 'color' } },
   { type: 'string', name: 'textColor', label: 'Color de texto', ui: { component: 'color' } },
 ];
@@ -48,7 +50,6 @@ export default defineConfig({
                   { type: 'string', name: 'description', label: 'Descripción' },
                   { type: 'string', name: 'credits', label: 'Créditos' },
                   { type: 'number', name: 'year', label: 'Año' },
-                  { type: 'boolean', name: 'showTitle', label: 'Mostrar título' },
                   ...displayFields,
                 ],
               },
@@ -72,7 +73,6 @@ export default defineConfig({
                   },
                   { type: 'string', name: 'description', label: 'Descripción' },
                   { type: 'string', name: 'credits', label: 'Créditos' },
-                  { type: 'boolean', name: 'showTitle', label: 'Mostrar título' },
                   ...displayFields,
                 ],
               },
@@ -83,7 +83,6 @@ export default defineConfig({
                   { type: 'string', name: 'title', label: 'Título', required: true },
                   { type: 'image', name: 'images', label: 'Imágenes', list: true },
                   { type: 'string', name: 'credits', label: 'Créditos' },
-                  { type: 'boolean', name: 'showTitle', label: 'Mostrar título' },
                   ...displayFields,
                 ],
               },
@@ -96,7 +95,6 @@ export default defineConfig({
                   { type: 'number', name: 'year', label: 'Año' },
                   { type: 'string', name: 'credits', label: 'Créditos' },
                   { type: 'image', name: 'images', label: 'Imágenes', list: true },
-                  { type: 'boolean', name: 'showTitle', label: 'Mostrar título' },
                   ...displayFields,
                 ],
               },

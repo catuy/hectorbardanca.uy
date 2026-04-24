@@ -46,7 +46,7 @@ function DiscoBlock({ block }: { block: any }) {
         />
       )}
       <div className="post-disco__info">
-        <h2 className="post-disco__title" data-tina-field={tinaField(block, 'title')}>{block.title}</h2>
+        {block.showTitle !== false && <h2 className="post-disco__title" data-tina-field={tinaField(block, 'title')}>{block.title}</h2>}
         {block.artist && <span className="post-disco__artist" data-tina-field={tinaField(block, 'artist')}>{block.artist}</span>}
         {block.year && <span className="post-disco__year" data-tina-field={tinaField(block, 'year')}>{block.year}</span>}
         {block.tracks && block.tracks.length > 0 && (
@@ -66,32 +66,35 @@ function DiscoBlock({ block }: { block: any }) {
 
 function FotoBlock({ block }: { block: any }) {
   if (!block.images || block.images.length === 0) return null;
+  const imgClass = block.fitScreen ? 'post-foto__image post-foto__image--fit' : 'post-foto__image';
+  const creditsClass = block.fitScreen ? 'post-foto__credits post-foto__credits--center' : 'post-foto__credits';
   return (
-    <article className="post" data-category="fotos">
+    <article className={block.fitScreen ? 'post post--fit-center' : 'post'} data-category="fotos">
       {block.images.length === 1 ? (
-        <img className="post-foto__image" src={block.images[0]} alt="" loading="lazy" data-tina-field={tinaField(block, 'images')} />
+        <img className={imgClass} src={block.images[0]} alt="" loading="lazy" data-tina-field={tinaField(block, 'images')} />
       ) : (
         <div className="post-foto__gallery" data-tina-field={tinaField(block, 'images')}>
           {block.images.map((src: string, i: number) => (
-            <img key={i} className="post-foto__image" src={src} alt="" loading="lazy" />
+            <img key={i} className={imgClass} src={src} alt="" loading="lazy" />
           ))}
         </div>
       )}
       {!block.fullscreen && block.credits && (
-        <p className="post-foto__credits" data-tina-field={tinaField(block, 'credits')}>{block.credits}</p>
+        <p className={creditsClass} data-tina-field={tinaField(block, 'credits')}>{block.credits}</p>
       )}
     </article>
   );
 }
 
 function TextoBlock({ block }: { block: any }) {
+  const imgClass = block.fitScreen ? 'post-foto__image post-foto__image--fit' : 'post-foto__image';
   return (
     <article className="post post-inner" data-category="textos">
-      <h2 className="post-texto__title" data-tina-field={tinaField(block, 'title')}>{block.title}</h2>
+      {block.showTitle !== false && <h2 className="post-texto__title" data-tina-field={tinaField(block, 'title')}>{block.title}</h2>}
       {block.images && block.images.length > 0 && (
         <div className="post-foto__gallery" data-tina-field={tinaField(block, 'images')}>
           {block.images.map((src: string, i: number) => (
-            <img key={i} className="post-foto__image" src={src} alt="" loading="lazy" />
+            <img key={i} className={imgClass} src={src} alt="" loading="lazy" />
           ))}
         </div>
       )}
@@ -108,7 +111,7 @@ function TextoBlock({ block }: { block: any }) {
 function BioBlock({ block }: { block: any }) {
   return (
     <article className="post post-bio post-inner" data-category="bio">
-      <h2 className="post-bio__title" data-tina-field={tinaField(block, 'title')}>{block.title}</h2>
+      {block.showTitle !== false && <h2 className="post-bio__title" data-tina-field={tinaField(block, 'title')}>{block.title}</h2>}
       {block.content && (
         <div className="post-bio__body" data-tina-field={tinaField(block, 'content')}>
           <RichContent content={block.content} />
