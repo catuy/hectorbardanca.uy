@@ -88,11 +88,19 @@ function TextoBlock({ block }: { block: any }) {
   return (
     <article className="post post-inner" data-category="textos">
       <h2 className="post-texto__title" data-tina-field={tinaField(block, 'title')}>{block.title}</h2>
+      {block.images && block.images.length > 0 && (
+        <div className="post-foto__gallery" data-tina-field={tinaField(block, 'images')}>
+          {block.images.map((src: string, i: number) => (
+            <img key={i} className="post-foto__image" src={src} alt="" loading="lazy" />
+          ))}
+        </div>
+      )}
       {block.content && (
         <div className="post-texto__body" data-tina-field={tinaField(block, 'content')}>
           <RichContent content={block.content} />
         </div>
       )}
+      {block.credits && <p className="post-foto__credits" data-tina-field={tinaField(block, 'credits')}>{block.credits}</p>}
     </article>
   );
 }
